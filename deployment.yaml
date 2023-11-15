@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: financeapp
+  name: yfinance-wrapper
 spec:
   selector:
-    app: financeapp
+    app: yfinance-wrapper
   ports:
   - protocol: "TCP"
-    port: 8000
-    targetPort: 8084
+    port: 8090
+    targetPort: 8000
   type: LoadBalancer
 
 ---
@@ -16,20 +16,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: financeapp
+  name: yfinance-wrapper
 spec:
   selector:
     matchLabels:
-      app: financeapp
+      app: yfinance-wrapper
   replicas: 1
   template:
     metadata:
       labels:
-        app: financeapp
+        app: yfinance-wrapper
+
     spec:
       containers:
-      - name: financeapp
-        image: docker.lucas.engineering/financeapp:0.1
+      - name: yfinance-wrapper
+        image: docker.lucas.engineering/yfinance_wrapper:0.2
         imagePullPolicy: IfNotPresent
+        env:
+        - name: TEST_VARIABLE
+          value: "Value of the test variable"
         ports:
         - containerPort: 8000
