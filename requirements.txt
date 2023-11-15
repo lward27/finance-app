@@ -29,3 +29,4 @@ tzdata==2023.3
 urllib3==2.1.0
 uvicorn==0.24.0.post1
 webencodings==0.5.1
+yfinance==0.2.31
