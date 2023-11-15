@@ -4,13 +4,13 @@ WORKDIR /app
 
 COPY requirements.txt .
 COPY src/setup.py .
-COPY src/financeapp ./financeapp
+COPY src/yfinance_wrapper ./yfinance_wrapper
 
 RUN pip install -r requirements.txt --user
 RUN pip install . --user
 
-LABEL "traefik.http.services.financeapp.loadbalancer.server.port"=8000
+LABEL "traefik.http.services.yfinance_wrapper.loadbalancer.server.port"=8000
 
 EXPOSE 8000
 
-ENTRYPOINT [ "python", "/app/financeapp" ]
+ENTRYPOINT [ "python", "/app/yfinance_wrapper" ]
