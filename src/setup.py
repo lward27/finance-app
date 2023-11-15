@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-setup(name='financeapp',
+setup(name='yfinance_wrapper',
       version='1.0',
       description='A Simple API',
       author='Lucas Ward',
